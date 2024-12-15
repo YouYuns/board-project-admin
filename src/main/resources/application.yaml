@@ -69,7 +69,3 @@ spring:
 springdoc:
   api-docs:
     path: /api-docs
----
-spring:
-  config.activate.on-profile: test
-  datasource.url: jdbc:h2:mem:testdb
