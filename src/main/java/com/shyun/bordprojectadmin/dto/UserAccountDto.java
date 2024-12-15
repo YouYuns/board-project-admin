@@ -33,6 +33,7 @@ public record UserAccountDto(
         return new UserAccountDto(
                 entity.getUserId(),
                 entity.getUserPassword(),
+                entity.getRoleTypes(),
                 entity.getEmail(),
                 entity.getNickname(),
                 entity.getMemo(),
@@ -47,6 +48,7 @@ public record UserAccountDto(
         return UserAccount.of(
                 userId,
                 userPassword,
+                roleTypes,
                 email,
                 nickname,
                 memo

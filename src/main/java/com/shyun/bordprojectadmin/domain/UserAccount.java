@@ -1,9 +1,12 @@
 package com.shyun.bordprojectadmin.domain;
 
 import com.shyun.bordprojectadmin.domain.constant.RoleType;
+import com.shyun.bordprojectadmin.domain.converter.RoleTypesConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,15 +26,18 @@ public class UserAccount extends AuditingFields {
 
     @Setter @Column(nullable = false) private String userPassword;
 
-    private Set<RoleType> roleTypes;
+    @Convert(converter = RoleTypesConverter.class)
+    @Column(nullable = false)
+    private Set<RoleType> roleTypes = new LinkedHashSet<>();
 
     @Setter @Column(length = 100) private String email;
     @Setter @Column(length = 100) private String nickname;
     @Setter private String memo;
 
-    private UserAccount(String userId, String userPassword, String email, String nickname, String memo, String createdBy) {
+    private UserAccount(String userId, String userPassword, Set<RoleType> roleTypes, String email, String nickname, String memo, String createdBy) {
         this.userId = userId;
         this.userPassword = userPassword;
+        this.roleTypes = roleTypes;
         this.email = email;
         this.nickname = nickname;
         this.memo = memo;
@@ -39,11 +45,23 @@ public class UserAccount extends AuditingFields {
         this.modifiedBy = createdBy;
     }
 
-    public static UserAccount of(String userId, String userPassword, String email, String nickname, String memo) {
-        return UserAccount.of(userId, userPassword, email, nickname, memo, null);
+    public static UserAccount of(String userId, String userPassword, Set<RoleType> roleTypes, String email, String nickname, String memo) {
+        return UserAccount.of(userId, userPassword, roleTypes, email, nickname, memo, null);
     }
-    public static UserAccount of(String userId, String userPassword, String email, String nickname, String memo, String createdBy) {
-        return new UserAccount(userId, userPassword, email, nickname, memo, createdBy);
+    public static UserAccount of(String userId, String userPassword,Set<RoleType> roleTypes, String email, String nickname, String memo, String createdBy) {
+        return new UserAccount(userId, userPassword,roleTypes, email, nickname, memo, createdBy);
+    }
+
+    public void addRoleType(RoleType roleType) {
+        this.getRoleTypes().add(roleType);
+    }
+
+    public void addRoleTypes(Collection<RoleType> roleTypes) {
+        this.getRoleTypes().addAll(roleTypes);
+    }
+
+    public void removeROleType(RoleType roleType) {
+        this.getRoleTypes().remove(roleType);
     }
 
     @Override
