@@ -67,14 +67,17 @@ public record BoardAdminPrincipal(
 
 
     public UserAccountDto toDto(){
-//        return UserAccountDto.of(
-//                username,
-//                password,
-//                email,
-//                nickname,
-//                memo
-//        );
-        return null;
+        return UserAccountDto.of(
+                username,
+                password,
+                authorities.stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .map(RoleType::valueOf)
+                        .collect(Collectors.toUnmodifiableSet()),
+                email,
+                nickname,
+                memo
+        );
     }
 
 
