@@ -3,7 +3,7 @@ management.endpoints.web.exposure.include: "*"
 
 logging:
   level:
-    com.shyun.boardproject: debug
+    com.shyun.bordprojectadmin: debug
     org.springframework.web.servlet: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
@@ -11,7 +11,7 @@ server:
   port: 8081
 
 spring:
-  application.name: boardproject
+  application.name: bordprojectadmin
   devtools:
     livereload:
       port: 35730
@@ -57,14 +57,7 @@ spring:
             user-name-attribute: id
 
 ---
-spring:
-  config.activate.on-profile: testdb
-  datasource:
-    url: jdbc:h2:mem:board;mode=mysql
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa.hibernate.ddl-auto: create
-  sql.init.mode: always
----
+
 
 springdoc:
   api-docs:
