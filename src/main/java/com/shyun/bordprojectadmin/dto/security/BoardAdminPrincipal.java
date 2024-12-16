@@ -2,6 +2,7 @@ package com.shyun.bordprojectadmin.dto.security;
 
 
 import com.shyun.bordprojectadmin.domain.constant.RoleType;
+import com.shyun.bordprojectadmin.dto.AdminAccountDto;
 import com.shyun.bordprojectadmin.dto.UserAccountDto;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -54,7 +55,7 @@ public record BoardAdminPrincipal(
         );
     }
 
-    public static BoardAdminPrincipal from(UserAccountDto dto){
+    public static BoardAdminPrincipal from(AdminAccountDto dto) {
         return BoardAdminPrincipal.of(
                 dto.userId(),
                 dto.userPassword(),
@@ -65,15 +66,15 @@ public record BoardAdminPrincipal(
         );
     }
 
-
-    public UserAccountDto toDto(){
-        return UserAccountDto.of(
+    public AdminAccountDto toDto() {
+        return AdminAccountDto.of(
                 username,
                 password,
                 authorities.stream()
                         .map(GrantedAuthority::getAuthority)
                         .map(RoleType::valueOf)
-                        .collect(Collectors.toUnmodifiableSet()),
+                        .collect(Collectors.toUnmodifiableSet())
+                ,
                 email,
                 nickname,
                 memo
