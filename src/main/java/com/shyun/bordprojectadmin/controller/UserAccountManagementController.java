@@ -20,6 +20,6 @@ public class UserAccountManagementController {
             Pageable pageable,
             Model model
     ){
-        return "management/userAccounts";
+        return "management/user-accounts";
     }
 }
