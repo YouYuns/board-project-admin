@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/members")
 @RequiredArgsConstructor
 @Controller
-public class AdminUserAccountController {
+public class AdminAccountController {
     @GetMapping
     public String members(
             @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC)
