@@ -14,8 +14,5 @@ public class BordProjectAdminApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BordProjectAdminApplication.class, args);
 	}
-	@Bean
-	public RestTemplate restTemplate(){
-		return new RestTemplate();
-	}
+
 }
