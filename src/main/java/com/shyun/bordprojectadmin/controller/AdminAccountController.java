@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/admin/members")
 @RequiredArgsConstructor
 @Controller
 public class AdminAccountController {
     private final AdminAccountService adminAccountService;
 
-    @GetMapping
+    @GetMapping("/admin/members")
     public String members(Model model){
         return "admin/members";
     }
