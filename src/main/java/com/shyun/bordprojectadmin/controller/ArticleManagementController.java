@@ -4,19 +4,16 @@ package com.shyun.bordprojectadmin.controller;
 import com.shyun.bordprojectadmin.dto.response.ArticleResponse;
 import com.shyun.bordprojectadmin.service.ArticleManagementService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/management/articles")
 @RequiredArgsConstructor
+@RequestMapping("/management/articles")
 @Controller
 public class ArticleManagementController {
 
-    ArticleManagementService articleManagementService;
+    private final ArticleManagementService articleManagementService;
 
     @GetMapping
     public String articles(Model model) {
@@ -40,4 +37,5 @@ public class ArticleManagementController {
 
         return "redirect:/management/articles";
     }
+
 }

@@ -40,12 +40,13 @@ public class SecurityConfig {
                       .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                       .requestMatchers(HttpMethod.POST, "/**").hasAnyRole(rolesAboveManager)
                         .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole(rolesAboveManager)
-                      .anyRequest().authenticated()
+                      .anyRequest().permitAll()
                 )
                 .formLogin(withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"))
                 .oauth2Login(withDefaults())
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
+//                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
+                .csrf(withDefaults())
                 .build();
     }
 

@@ -21,7 +21,7 @@ public class ArticleCommentManagementService {
     private final ProjectProperties projectProperties;
 
     public List<ArticleCommentDto> getArticleComments(){
-        URI uri = UriComponentsBuilder.fromHttpUrl(projectProperties.board().url() + "/api/articleComments  ")
+        URI uri = UriComponentsBuilder.fromHttpUrl(projectProperties.board().url() + "/api/articleComments")
                 .queryParam("size", 10000)//todo : 불안정하다 10000개 넘을수도있으니
                 .build().toUri();
 

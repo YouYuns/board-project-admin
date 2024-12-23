@@ -58,7 +58,7 @@ spring:
 
 
 #
-project.board.url: https://localhost:8080
+project.board.url: http://localhost:8080
 
 ---
 

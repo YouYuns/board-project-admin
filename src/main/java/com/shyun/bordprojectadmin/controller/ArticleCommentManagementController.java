@@ -12,18 +12,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
-@RequestMapping("/management/article-comments")
 @RequiredArgsConstructor
+@RequestMapping("/management/article-comments")
 @Controller
 public class ArticleCommentManagementController {
 
     private final ArticleCommentManagementService articleCommentManagementService;
 
     @GetMapping
-    public String articleComments(Model model){
-        model.addAttribute("comments",
-                articleCommentManagementService.getArticleComments()
-                .stream().map(ArticleCommentResponse::of).toList());
+    public String articleComments(Model model) {
+        model.addAttribute(
+                "comments",
+                articleCommentManagementService.getArticleComments().stream().map(ArticleCommentResponse::of).toList()
+        );
 
         return "management/article-comments";
     }

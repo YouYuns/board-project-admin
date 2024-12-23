@@ -22,14 +22,14 @@ public class ArticleManagementService {
     private final RestTemplate restTemplate;
     private final ProjectProperties projectProperties;
 
-    public List<ArticleDto> getArticles(){
+    public List<ArticleDto> getArticles() {
         URI uri = UriComponentsBuilder.fromHttpUrl(projectProperties.board().url() + "/api/articles")
-                .queryParam("size", 10000)//todo : 불안정하다 10000개 넘을수도있으니
-                .build().toUri();
-
+                .queryParam("size", 10000) // TODO: 전체 게시글을 가져오기 위해 충분히 큰 사이즈를 전달하는 방식. 불완전하다.
+                .build()
+                .toUri();
         ArticleClientResponse response = restTemplate.getForObject(uri, ArticleClientResponse.class);
-        return Optional.ofNullable(response)
-                .orElseGet(ArticleClientResponse::empty).articles();
+
+        return Optional.ofNullable(response).orElseGet(ArticleClientResponse::empty).articles();
     }
 
     public ArticleDto getArticle(Long articleId){
